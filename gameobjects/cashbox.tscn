@@ -9,9 +9,10 @@ albedo_color = Color(1, 1, 0.41568628, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_5tdst"]
 material = SubResource("StandardMaterial3D_fnuv1")
+size = Vector3(0.8, 0.8, 0.8)
 
 [sub_resource type="BoxMesh" id="BoxMesh_4tt7o"]
-size = Vector3(0.2, 0.8, 1)
+size = Vector3(0.1, 0.6, 0.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5tdst"]
 albedo_color = Color(0.49411765, 0.53333336, 1, 1)
@@ -26,7 +27,7 @@ shape = SubResource("CapsuleShape3D_fnuv1")
 mesh = SubResource("BoxMesh_5tdst")
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="BoxMesh"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.2603048, 0)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.22075176, 0)
 operation = 2
 mesh = SubResource("BoxMesh_4tt7o")
 material = SubResource("StandardMaterial3D_5tdst")

@@ -14,3 +14,7 @@ config/name="Godotober25 - 27. Pagar para ganar"
 run/main_scene="uid://r4yn4kbocuwp"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/stretch/mode="canvas_items"
