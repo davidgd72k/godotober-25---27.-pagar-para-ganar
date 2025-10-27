@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://br3w4gcfjkbti"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_fnuv1"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fnuv1"]
+height = 1.6855469
+
+[node name="Cashbox" type="Area3D"]
+
+[node name="BodyMesh" type="CSGMesh3D" parent="."]
+mesh = SubResource("BoxMesh_fnuv1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5141176, 0)
+shape = SubResource("CapsuleShape3D_fnuv1")
