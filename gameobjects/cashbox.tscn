@@ -1,15 +1,32 @@
-[gd_scene load_steps=3 format=3 uid="uid://br3w4gcfjkbti"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_fnuv1"]
+[gd_scene load_steps=6 format=3 uid="uid://br3w4gcfjkbti"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fnuv1"]
-height = 1.6855469
+radius = 0.8515625
+height = 2.2468262
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fnuv1"]
+albedo_color = Color(1, 1, 0.41568628, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5tdst"]
+material = SubResource("StandardMaterial3D_fnuv1")
+
+[sub_resource type="BoxMesh" id="BoxMesh_4tt7o"]
+size = Vector3(0.2, 0.8, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5tdst"]
+albedo_color = Color(0.49411765, 0.53333336, 1, 1)
 
 [node name="Cashbox" type="Area3D"]
 
-[node name="BodyMesh" type="CSGMesh3D" parent="."]
-mesh = SubResource("BoxMesh_fnuv1")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5141176, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.014995992, 0.44434798, 0.10321689)
 shape = SubResource("CapsuleShape3D_fnuv1")
+
+[node name="BoxMesh" type="CSGMesh3D" parent="."]
+mesh = SubResource("BoxMesh_5tdst")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="BoxMesh"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.2603048, 0)
+operation = 2
+mesh = SubResource("BoxMesh_4tt7o")
+material = SubResource("StandardMaterial3D_5tdst")
