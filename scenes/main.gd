@@ -1,11 +1,15 @@
 extends Node3D
 
-var dragging_collider
+var dragging_collider: Node3D
 var mouse_position
 var do_drag := false
 
+@onready var label: Label = $UI/Label
+
 func _ready() -> void:
-	pass
+	label.hide()
+	$Cashbox.get_coin.connect(_show_win_text)
+	
 
 func _process(delta: float) -> void:
 	if dragging_collider:
@@ -35,8 +39,8 @@ func _input(event: InputEvent) -> void:
 			
 
 func drag_and_drop(intersect) -> void:
-	var can_move = intersect && get_tree().get_nodes_in_group("movible")
-	
+	var can_move = intersect.collider.is_in_group("movible")
+		
 	if !dragging_collider && do_drag && can_move:
 		dragging_collider = intersect.collider
 	elif dragging_collider:
@@ -57,3 +61,8 @@ func get_mouse_intersect(mouse_position):
 	var result = worldspace.intersect_ray(params)
 	
 	return result
+
+
+func _show_win_text() -> void:
+	label.show()
+	$AudioStreamPlayer.play()
