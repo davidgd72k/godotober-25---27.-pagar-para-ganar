@@ -2,6 +2,8 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ad5de"]
 albedo_color = Color(1, 1, 0.41568628, 1)
+emission = Color(0.9558279, 0.79428077, 0.17501932, 1)
+emission_energy_multiplier = 2.45
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_8safa"]
 material = SubResource("StandardMaterial3D_ad5de")
@@ -10,13 +12,14 @@ bottom_radius = 0.3
 height = 0.1
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_t4pel"]
-radius = 0.5945324
+radius = 0.4474883
 
-[node name="Coin" type="CharacterBody3D"]
+[node name="Coin" type="CharacterBody3D" groups=["movible"]]
 
 [node name="Mesh3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.41124225, 0)
 mesh = SubResource("CylinderMesh_8safa")
 
 [node name="Hitbox" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.43039203, 0)
 shape = SubResource("SphereShape3D_t4pel")

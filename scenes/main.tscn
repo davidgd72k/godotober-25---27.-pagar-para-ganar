@@ -1,13 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://r4yn4kbocuwp"]
+[gd_scene load_steps=12 format=3 uid="uid://r4yn4kbocuwp"]
 
 [ext_resource type="Shader" uid="uid://difyle6bld4kh" path="res://shaders/n64_skybox.gdshader" id="1_0wfyh"]
 [ext_resource type="Script" uid="uid://dm4e6l7qb3gn4" path="res://scenes/main.gd" id="1_tbgi4"]
 [ext_resource type="Texture2D" uid="uid://bghptqfuh62bg" path="res://assets/textures/skytex_wispy-sunset_512x512.png" id="2_sugp2"]
 [ext_resource type="PackedScene" uid="uid://br3w4gcfjkbti" path="res://gameobjects/cashbox.tscn" id="3_sugp2"]
 [ext_resource type="PackedScene" uid="uid://bs4trbpm0jr5v" path="res://gameobjects/coin.tscn" id="4_jyhfs"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_sgp6g"]
-size = Vector3(5, 0.2, 4)
+[ext_resource type="Texture2D" uid="uid://cvv8ahes2or8" path="res://assets/textures/tex_wood1.png" id="6_tefeu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jyhfs"]
 render_priority = 0
@@ -24,6 +22,18 @@ material = SubResource("ShaderMaterial_jyhfs")
 flip_faces = true
 size = Vector3(200, 200, 200)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o6xl0"]
+albedo_texture = ExtResource("6_tefeu")
+
+[sub_resource type="BoxMesh" id="BoxMesh_sgp6g"]
+material = SubResource("StandardMaterial3D_o6xl0")
+size = Vector3(5, 0.2, 4)
+subdivide_width = 5
+subdivide_depth = 5
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tbgi4"]
+size = Vector3(4.939209, 0.5118408, 3.8632813)
+
 [node name="Main" type="Node3D"]
 script = ExtResource("1_tbgi4")
 
@@ -34,15 +44,22 @@ transform = Transform3D(1, 0, 0, 0, 0.6928609, 0.7210713, 0, -0.7210713, 0.69286
 transform = Transform3D(1, 0, 0, 0, 0.49883568, 0.8666966, 0, -0.8666966, 0.49883568, 0, 0.59025985, 0)
 light_energy = 1.807
 
-[node name="Ground" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.10833898, 0)
-mesh = SubResource("BoxMesh_sgp6g")
-
 [node name="Skybox" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_tbgi4")
 
 [node name="Cashbox" parent="." instance=ExtResource("3_sugp2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9803611, 0.27652097, -0.30415225)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.9803611, 0.35926354, -0.30415225)
 
 [node name="Coin" parent="." instance=ExtResource("4_jyhfs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9044056, 0.7527876, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9044056, 0.23632407, 0)
+
+[node name="Ground" type="StaticBody3D" parent="."]
+
+[node name="GroundMesh" type="MeshInstance3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.10833898, 0)
+mesh = SubResource("BoxMesh_sgp6g")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.24407959, 0)
+shape = SubResource("BoxShape3D_tbgi4")
